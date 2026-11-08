@@ -105,9 +105,49 @@ button.g{background:transparent;color:var(--mut);border:1px solid var(--bd);bord
 .lb h3{margin:6px 0;font:900 20px Impact,sans-serif;text-transform:uppercase}.lb .ic{font-size:34px}.lb .big{font-size:20px;padding:4px 12px}
 .lo{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(7,9,10,.3);text-align:center}
 .lo span{font-size:28px;animation:bob 3s infinite}.lo b{font:900 16px Impact,sans-serif;text-transform:uppercase;letter-spacing:.08em}.lo small{color:var(--g)}
+
+.w{z-index:1}
+.bgd{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.cn{position:absolute;transform:translateY(calc(var(--py,0)*var(--k,0)*1px));filter:drop-shadow(0 30px 40px rgba(0,0,0,.85))}
+.cn .fx{animation:fl 7s ease-in-out infinite}.cn img{display:block;width:100%}
+.cA{width:clamp(130px,13vw,230px);left:clamp(-50px,calc(50% - 790px),9999px);top:14vh;--r:-11deg;--k:-.05}
+.cB{width:clamp(90px,8vw,140px);left:clamp(-20px,calc(50% - 700px),9999px);top:68vh;--r:9deg;--k:-.09}
+.cC{width:clamp(120px,12vw,215px);right:clamp(-50px,calc(50% - 790px),9999px);top:34vh;--r:11deg;--k:-.06}
+.cD{width:clamp(80px,7.5vw,125px);right:clamp(-20px,calc(50% - 700px),9999px);top:9vh;--r:-14deg;--k:-.1}
+.cB .fx{animation-delay:-2s}.cC .fx{animation-delay:-3.5s}.cD .fx{animation-delay:-1s}
+.gl{position:absolute;border-radius:50%;filter:blur(70px);animation:gl 6s ease-in-out infinite}
+@keyframes gl{50%{opacity:.5;transform:scale(1.18)}}
+.clw{position:absolute;width:min(30vw,420px);opacity:.09;fill:var(--g)}
+.clw path{animation:slash 1.6s cubic-bezier(.2,.8,.2,1) both}.clw path:nth-child(2){animation-delay:.2s}.clw path:nth-child(3){animation-delay:.4s}
+.shd{position:absolute;width:240px;opacity:.1;animation:spin 40s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.sp{position:absolute;bottom:-12px;border-radius:50%;background:var(--g);box-shadow:0 0 10px var(--g),0 0 22px var(--g);opacity:0;animation:rise linear infinite}
+@keyframes rise{10%{opacity:.9}to{transform:translate(var(--dx),-112vh);opacity:0}}
+.rl{position:absolute;top:0;bottom:0;width:2px;background:linear-gradient(transparent,var(--g),transparent);opacity:.25;animation:rl 5s ease-in-out infinite}@keyframes rl{50%{opacity:.05}}
+@media(max-width:1060px){.cn{display:none}}
+
+#lg{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:10px;z-index:60;display:flex;gap:6px;background:rgba(10,13,14,.85);backdrop-filter:blur(10px);border:1px solid var(--bd);border-radius:14px;padding:5px}
+#lg button{font:900 13px Impact,sans-serif;letter-spacing:.06em;border:0;border-radius:9px;padding:7px 11px;background:transparent;color:var(--mut);cursor:pointer;box-shadow:none;text-transform:uppercase;transition:.2s}
+#lg button:hover{transform:none;background:#1a2125;color:var(--tx)}#lg button.on{background:var(--g);color:#000}
+.hint{margin:0 0 14px;padding:11px 16px;border-radius:14px;background:linear-gradient(90deg,#1b2a05,#0d1113);border:1px solid #2c3a10;font-weight:700;color:var(--g2);transition:opacity .4s,transform .4s}
+.hint.out{opacity:0;transform:translateY(6px)}
 </style>
 </head>
 <body>
+<div class="bgd" id="bgd">
+ <div class="gl" style="left:-6vw;top:8vh;width:34vw;height:34vw;background:#95d600;opacity:.26"></div>
+ <div class="gl" style="right:-8vw;top:30vh;width:34vw;height:34vw;background:#c98a55;opacity:.22;animation-delay:-3s"></div>
+ <div class="gl" style="left:20vw;bottom:-18vh;width:40vw;height:26vw;background:#2f6bff;opacity:.1;animation-delay:-1.5s"></div>
+ <div class="rl" style="left:7vw"></div><div class="rl" style="right:7vw;animation-delay:-2.5s"></div>
+ <svg class="clw" viewBox="0 0 200 240" style="left:-4vw;bottom:-6vh"><path d="M30 0h34l18 150-26 90h-8z"/><path d="M84 0h30l-4 120-18 100h-10z"/><path d="M134 0h30l22 140-34 70h-8z"/></svg>
+ <svg class="clw" viewBox="0 0 200 240" style="right:-4vw;top:-4vh;transform:scaleX(-1)"><path d="M30 0h34l18 150-26 90h-8z"/><path d="M84 0h30l-4 120-18 100h-10z"/><path d="M134 0h30l22 140-34 70h-8z"/></svg>
+ <svg class="shd" viewBox="0 0 100 120" fill="none" stroke="#95d600" stroke-width="2" style="right:3vw;bottom:6vh"><path d="M50 4l42 14v38c0 28-18 48-42 60C26 104 8 84 8 56V18z"/><path d="M28 62l22-20 22 20v22H28z"/></svg>
+ <svg class="shd" viewBox="0 0 100 120" fill="none" stroke="#95d600" stroke-width="2" style="left:2vw;top:6vh;width:170px;animation-direction:reverse"><path d="M50 4l42 14v38c0 28-18 48-42 60C26 104 8 84 8 56V18z"/><path d="M28 62l22-20 22 20v22H28z"/></svg>
+ <div class="cn cA"><div class="fx"><img data-k="mon" alt=""></div></div>
+ <div class="cn cB"><div class="fx"><img data-k="lay" alt=""></div></div>
+ <div class="cn cC"><div class="fx"><img data-k="mrb" alt=""></div></div>
+ <div class="cn cD"><div class="fx"><img data-k="mon" alt=""></div></div>
+</div>
+<div id="lg"><button data-l="sk" class="on">SK</button><button data-l="cz">CZ</button><button id="snd" title="Zvuk">🔊</button></div>
 <div class="w">
 <div class="hero">
  <svg class="claw" viewBox="0 0 200 240"><path d="M30 0h34l18 150-26 90h-8z"/><path d="M84 0h30l-4 120-18 100h-10z"/><path d="M134 0h30l22 140-34 70h-8z"/></svg>
@@ -119,7 +159,7 @@ button.g{background:transparent;color:var(--mut);border:1px solid var(--bd);bord
 <div class="tick"><div id="tk"></div></div>
 
 <div class="tabs" id="tabs"></div>
-<section class="pane on" id="ch"><div class="live">aktualizuje sa automaticky</div><div class="strip" id="strip"></div><div id="chl"></div><div id="lkd"></div></section>
+<section class="pane on" id="ch"><div class="live">aktualizuje sa automaticky</div><div class="hint" id="hint"></div><div class="strip" id="strip"></div><div id="chl"></div><div id="lkd"></div></section>
 <section class="pane" id="pr"><div class="prizes" id="prl"></div></section>
 <section class="pane" id="wh">
  <div class="wheelw">
@@ -168,7 +208,7 @@ function buildTabs(){const L=[["ch","🔥 Dnešná výzva"],["pr","🎁 Odmeny"]
 function tab(t){cur=t;buildTabs();document.querySelectorAll(".pane").forEach(p=>p.classList.toggle("on",p.id===t));window.scrollTo({top:$("tabs").offsetTop-10,behavior:"smooth"})}
 $("tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(b)tab(b.dataset.t)});
 function confetti(){const c=["#95d600","#c6ff2e","#fff","#c98a55","#e2231a","#2f6bff"];for(let i=0;i<80;i++){const e=document.createElement("i");e.className="cf";e.style.left=Math.random()*100+"vw";e.style.background=c[i%6];e.style.animationDelay=Math.random()*.6+"s";e.style.animationDuration=1.8+Math.random()*1.5+"s";document.body.appendChild(e);setTimeout(()=>e.remove(),4400)}}
-function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),4800)}
+var toast=function(m){const t=$("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),4800)}
 function tilt(){document.querySelectorAll(".c").forEach(c=>{c.addEventListener("pointermove",e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(800px) rotateY(${x*5}deg) rotateX(${-y*5}deg) translateY(-4px)`});c.addEventListener("pointerleave",()=>c.style.transform="")})}
 
 // ===== dnešná výzva =====
@@ -192,11 +232,11 @@ const SL=[["☕ KÁVA","#a8652f"],["⚡ MONSTER","#95d600"]],N=10,A=360/N;let ro
 const pt=(a,r)=>[200+r*Math.sin(a*Math.PI/180),200-r*Math.cos(a*Math.PI/180)];
 $("disc").innerHTML=Array.from({length:N},(_,i)=>{const [x1,y1]=pt(i*A,168),[x2,y2]=pt((i+1)*A,168),[c,col]=SL[i%2];return `<path d="M200 200L${x1} ${y1}A168 168 0 0 1 ${x2} ${y2}Z" fill="${col}" stroke="#000" stroke-width="3"/><text transform="rotate(${i*A+A/2} 200 200)" x="200" y="62" text-anchor="middle" fill="${i%2?"#000":"#fff"}" font-family="Impact,Arial Black" font-size="16" letter-spacing="1">${c}</text>`}).join("");
 $("bulbs").innerHTML=Array.from({length:24},(_,i)=>{const [x,y]=pt(i*15,180);return `<circle class="bulb" cx="${x}" cy="${y}" r="5" fill="${i%2?"#c6ff2e":"#fff"}"/>`}).join("");
-function runSpin(s,anim){const c=((rot%360)+360)%360,tg=(360-s.off)%360,d=$("disc");rot+=(anim?360*7:0)+((tg-c)+360)%360;
+var runSpin=function(s,anim){const c=((rot%360)+360)%360,tg=(360-s.off)%360,d=$("disc");rot+=(anim?360*7:0)+((tg-c)+360)%360;
  d.style.transition=anim?"":"none";void d.getBoundingClientRect();d.style.transform=`rotate(${rot}deg)`;
  const fin=()=>{const q=SL[s.w%2];busy=false;$("sp").disabled=false;$("wb").classList.remove("spin");
   $("rs").innerHTML=`<div class="win" style="color:${q[1]};text-shadow:0 0 30px ${q[1]}">${q[0]}</div><p>Gratulujem, túto odmenu si vyhral!</p>`;
-  hist.unshift(q);$("hs").innerHTML=hist.slice(0,8).map(h=>`<i style="color:${h[1]}">${h[0]}</i>`).join("");if(anim)confetti()};
+  hist.unshift(q);$("hs").innerHTML=hist.slice(0,8).map(h=>`<i style="color:${h[1]}">${h[0]}</i>`).join("");if(anim){confetti();fanfare()}};
  if(anim){busy=true;$("sp").disabled=true;$("wb").classList.add("spin");$("rs").innerHTML="<p>Točí sa… 🤞</p>";setTimeout(fin,6200)}else fin()}
 function applySpin(s){if(!s||s.id===lastSpin)return;lastSpin=s.id;runSpin(s,!firstW&&Date.now()-s.id<12000)}
 $("sp").onclick=()=>{if(busy)return;$("sp").disabled=true;const w=Math.floor(Math.random()*N),s={w,off:w*A+A*(.15+Math.random()*.7),id:Date.now()};
@@ -218,6 +258,55 @@ async function load(){try{const r=await fetch("data.json?"+Date.now(),{cache:"no
  seen=new Set(entries.map(e=>e.id));wheelState=j.wheel||null;drawStrip();drawWon();renderTable();if(admin)sync();if(wheelState)applySpin(wheelState)}catch(e){}firstW=false}
 admin=location.hash==="#admin";$("sp").hidden=!admin;$("wnote").hidden=admin;
 buildTabs();drawCard();load();if(!admin)setInterval(load,20000);
+
+(function(){const b=$("bgd");for(let i=0;i<26;i++){const e=document.createElement("i");e.className="sp";const z=2+Math.random()*4;e.style.cssText=`left:${Math.random()*100}vw;width:${z}px;height:${z}px;--dx:${(Math.random()-.5)*160}px;animation-duration:${7+Math.random()*10}s;animation-delay:${-Math.random()*14}s`;b.appendChild(e)}
+let t=0;addEventListener("scroll",()=>{if(t)return;t=requestAnimationFrame(()=>{document.documentElement.style.setProperty("--py",scrollY);t=0})},{passive:true})})();
+
+// ===== zvuky =====
+let AC=null,mute=false;try{mute=localStorage.getItem("snd")==="0"}catch(e){}
+function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(AC&&AC.state==="suspended")AC.resume().catch(()=>{});return AC}
+function beep(f,d,t,ty,v){const a=ac();if(!a||mute)return;const o=a.createOscillator(),g=a.createGain(),T0=a.currentTime+t;o.type=ty||"sine";o.frequency.value=f;g.gain.setValueAtTime(v||.08,T0);g.gain.exponentialRampToValueAtTime(.0001,T0+d);o.connect(g);g.connect(a.destination);o.start(T0);o.stop(T0+d+.02)}
+function ticks(){let t=0,g=.06;while(t<5.9){beep(900,.03,t,"square",.035);g*=1.045;t+=g}}
+function fanfare(){[523,659,784,1047].forEach((f,i)=>beep(f,.25,i*.12,"triangle",.1));beep(1319,.55,.5,"triangle",.1)}
+function pop(){beep(660,.12,0,"sine",.1);beep(990,.18,.1,"sine",.1)}
+function sndBtn(){$("snd").textContent=mute?"🔇":"🔊"}
+$("snd").onclick=()=>{mute=!mute;try{localStorage.setItem("snd",mute?"0":"1")}catch(e){}sndBtn();if(!mute){ac();pop()}};
+addEventListener("pointerdown",()=>ac(),{once:true});sndBtn();
+const _runSpin=runSpin;runSpin=function(s,anim){if(anim)ticks();return _runSpin(s,anim)};
+const _fin=confetti;
+const _toast=toast;toast=function(m){pop();return _toast(m)};
+
+// ===== hlášky =====
+const H={sk:["Dnes je tvoj deň ⚡","Každý hovor je šanca na zmluvu 📞","Káva v ruke, úsmev na tvári, zmluva v kapse ☕","Poisťujeme domovy – ty si dnes hrdina týždňa 🛡️","Nevzdávaj to – ďalší hovor môže byť ten výherný 🎯","Malý krok k zmluve, veľký skok k odmene 🚀","Dnes zaboduj – Monster čaká ⚡","Úsmev v hlase predá viac ako akákoľvek ponuka 😄"],
+ cz:["Dnes je tvůj den ⚡","Každý hovor je šance na smlouvu 📞","Káva v ruce, úsměv na tváři, smlouva v kapse ☕","Pojišťujeme domovy – ty jsi dnes hrdina týdne 🛡️","Nevzdávej to – další hovor může být ten výherní 🎯","Malý krok ke smlouvě, velký skok k odměně 🚀","Dnes zabodujte – Monster čeká ⚡","Úsměv v hlase prodá víc než jakákoliv nabídka 😄"]};
+let lang="sk",hi=Math.floor(Math.random()*H.sk.length);
+function hint(){const e=$("hint");e.classList.add("out");setTimeout(()=>{hi=(hi+1)%H.sk.length;e.textContent=H[lang][hi];e.classList.remove("out")},400)}
+$("hint").textContent=H.sk[hi];setInterval(hint,7000);
+
+// ===== SK / CZ =====
+const CZ=[["Päť dní, päť výziev. Chráň domov klientov, naber energiu a vyhraj.","Pět dní, pět výzev. Chraň domov klientů, nabij energii a vyhraj."],["Týždeň","Týden"],["nováčikov","nováčků"],["Poistenie","Pojištění"],["POISTENIE","POJIŠTĚNÍ"],["DOMÁCNOSŤ","DOMÁCNOST"],
+["🔥 Dnešná výzva","🔥 Dnešní výzva"],["🎁 Odmeny","🎁 Odměny"],["Kolo šťastia","Kolo štěstí"],["kolo šťastia","kolo štěstí"],["aktualizuje sa automaticky","aktualizuje se automaticky"],
+["Pondelok","Pondělí"],["Utorok","Úterý"],["Streda","Středa"],["Štvrtok","Čtvrtek"],["Piatok","Pátek"],["pondelok","pondělí"],["utorok","úterý"],["streda","středa"],["štvrtok","čtvrtek"],["piatok","pátek"],
+["Prvá zmluva za 3 000 Kč","První smlouva za 3 000 Kč"],["≈ 120 € · prvá zmluva v hodnote aspoň toľko","≈ 120 € · první smlouva v hodnotě alespoň tolik"],["Kto ako prvý uzavrie zmluvu v tejto hodnote, vyhráva.","Kdo jako první uzavře smlouvu v této hodnotě, vyhrává."],["🎁 výber z odmien","🎁 výběr z odměn"],
+["Najlepšia neproduktivita","Nejlepší neproduktivita"],["norma neproduktivity za deň","norma neproduktivity za den"],["Vyhráva operátor s najlepšou neproduktivitou dňa.","Vyhrává operátor s nejlepší neproduktivitou dne."],
+["Zatoč kolom a vyhraj kávu alebo Monster.","Zatoč kolem a vyhraj kávu nebo Monster."],["Ísť na kolo 🎡","Jít na kolo 🎡"],
+["3 otázky z testov","3 otázky z testů"],["správne odpovede = odmena","správné odpovědi = odměna"],["Čím viac správnych odpovedí, tým lepšia odmena.","Čím více správných odpovědí, tím lepší odměna."],["2 správne","2 správně"],["1 správna","1 správná"],["správne = výber","správně = výběr"],
+["Hodnotenie hovorov","Hodnocení hovorů"],["alebo 85 – 95 % hodnotenie","nebo 85 – 95 % hodnocení"],["Pozná sa kvalita tvojich hovorov.","Pozná se kvalita tvých hovorů."],["1 výber","1 výběr"],
+["Čo príde ďalej","Co přijde dál"],["odomkne sa:","odemkne se:"],["Zatiaľ nikto – buď prvý!","Zatím nikdo – buď první!"],
+["Čoskoro","Brzy"],["Súťaž začína v pondelok 9. 11.","Soutěž začíná v pondělí 9. 11."],["Priprav sa – prvá výzva sa odomkne v pondelok ráno.","Připrav se – první výzva se odemkne v pondělí ráno."],["do štartu súťaže","do startu soutěže"],
+["Výzvy sú na pauze","Výzvy jsou na pauze"],["Ďalšia výzva sa odomkne v pondelok.","Další výzva se odemkne v pondělí."],["Chrumky na pracovný deň","Chroupky na pracovní den"],
+["Čakáme na zatočenie…","Čekáme na roztočení…"],["Zatočiť","Roztočit"],["Kolom točí vedúci – sleduješ naživo 👀","Kolem točí vedoucí – sleduješ naživo 👀"],["Točí sa…","Točí se…"],["Gratulujem, túto odmenu si vyhral!","Gratuluji, tuto odměnu jsi vyhrál!"]].sort((a,b)=>b[0].length-a[0].length);
+const orig=new WeakMap(),done=new WeakMap();
+function tr(v){for(const [a,b] of CZ)if(v.includes(a))v=v.split(a).join(b);return v}
+function walk(n){if(n.nodeType===3){const v=n.nodeValue;if(done.get(n)===v)return;if(lang==="cz"){const c=tr(v);orig.set(n,v);done.set(n,c);if(c!==v)n.nodeValue=c}}else if(n.nodeType===1&&!/^(SCRIPT|STYLE|TEXTAREA)$/.test(n.tagName))n.childNodes.forEach(walk)}
+function unwalk(){const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){if(orig.has(n)&&n.nodeValue===done.get(n))n.nodeValue=orig.get(n);done.delete(n)}}
+new MutationObserver(ms=>{if(lang!=="cz")return;ms.forEach(m=>{if(m.type==="characterData")walk(m.target);else m.addedNodes.forEach(walk)})}).observe(document.body,{childList:true,subtree:true,characterData:true});
+function setLang(l){lang=l;try{localStorage.setItem("lang",l)}catch(e){}document.documentElement.lang=l==="cz"?"cs":"sk";
+ document.querySelectorAll("#lg button[data-l]").forEach(b=>b.classList.toggle("on",b.dataset.l===l));
+ $("hint").textContent=H[l][hi];if(l==="cz")walk(document.body);else unwalk()}
+$("lg").addEventListener("click",e=>{const b=e.target.closest("button[data-l]");if(b)setLang(b.dataset.l)});
+let L0="sk";try{L0=localStorage.getItem("lang")||((navigator.language||"").startsWith("cs")?"cz":"sk")}catch(e){}
+if(L0==="cz")setLang("cz");
 </script>
 </body>
 </html>
