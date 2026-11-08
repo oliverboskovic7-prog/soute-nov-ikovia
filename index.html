@@ -130,6 +130,28 @@ button.g{background:transparent;color:var(--mut);border:1px solid var(--bd);bord
 #lg button:hover{transform:none;background:#1a2125;color:var(--tx)}#lg button.on{background:var(--g);color:#000}
 .hint{margin:0 0 14px;padding:11px 16px;border-radius:14px;background:linear-gradient(90deg,#1b2a05,#0d1113);border:1px solid #2c3a10;font-weight:700;color:var(--g2);transition:opacity .4s,transform .4s}
 .hint.out{opacity:0;transform:translateY(6px)}
+
+.fun{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:18px}
+.fc{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:20px;opacity:0;animation:cin .7s forwards}.fc:nth-child(2){animation-delay:.12s}.fc:nth-child(3){animation-delay:.24s}
+.fc h3{margin:0 0 6px;font:900 24px Impact,sans-serif;text-transform:uppercase}.fc>p{color:var(--mut);margin:0 0 12px}
+.pb{height:30px;border-radius:20px;background:#0b1000;border:1px solid #2c3a10;position:relative;margin:30px 0 8px}
+.pb i{display:block;height:100%;width:0;border-radius:20px;background:repeating-linear-gradient(45deg,var(--g) 0 12px,var(--g2) 12px 24px);background-size:34px 34px;animation:stp 1s linear infinite;transition:width .9s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 18px var(--g)}
+@keyframes stp{to{background-position:34px 0}}
+.pb b{position:absolute;top:-24px;left:3%;font-size:34px;transition:left .9s cubic-bezier(.2,.8,.2,1);transform:translateX(-50%);animation:bob 1.6s infinite}
+.trs{display:flex;justify-content:space-between;font-weight:800}
+.tl{display:flex;flex-wrap:wrap;gap:6px}.tl span{background:#0b1000;border:1px solid #2c3a10;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s}.tl span:hover{border-color:#e2231a}
+.tdone{font:900 20px Impact,sans-serif;color:var(--g2);animation:pop .7s cubic-bezier(.2,1.6,.4,1)}
+.gbar{display:flex;justify-content:space-between;font-weight:800;margin-bottom:8px}.gbar b{color:var(--g)}
+.garea{position:relative;height:340px;border-radius:16px;overflow:hidden;border:1px solid var(--bd);background:radial-gradient(ellipse at 50% 100%,#1d3a00,#07090a 70%);touch-action:manipulation;user-select:none}
+.gi{position:absolute;width:46px;cursor:pointer;-webkit-user-drag:none;filter:drop-shadow(0 6px 8px rgba(0,0,0,.7))}.gi.bad{font-size:36px;width:auto;line-height:1}
+.gi.pop{animation:px .3s forwards}@keyframes px{to{transform:scale(1.9) rotate(20deg);opacity:0}}
+.gmsg{position:absolute;inset:0;display:grid;place-content:center;text-align:center;font:900 26px Impact,sans-serif;text-transform:uppercase;color:var(--g2);text-shadow:0 0 20px var(--g)}
+.qo{display:block;width:100%;text-align:left;margin:7px 0;background:#0d1113;color:var(--tx);border:2px solid var(--bd);box-shadow:none;text-transform:none;letter-spacing:0;font:600 15px system-ui;padding:12px 14px;border-radius:12px;cursor:pointer;transition:.2s}
+.qo:hover{border-color:var(--g);transform:translateX(4px) scale(1)}
+.qo.ok{border-color:var(--g);background:#122200;animation:px2 .4s}.qo.no{border-color:#e2231a;background:#2a0a08;animation:shk .4s}
+@keyframes px2{50%{transform:scale(1.04)}}@keyframes shk{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.qh{font-weight:800;color:var(--g);margin-bottom:4px}.qq{font:700 18px system-ui;margin:4px 0 8px}
+.res .req{background:#0b1000;border:1px solid #2c3a10;border-radius:12px;padding:6px 14px;color:var(--g2);font-weight:700}
 </style>
 </head>
 <body>
@@ -161,6 +183,17 @@ button.g{background:transparent;color:var(--mut);border:1px solid var(--bd);bord
 <div class="tabs" id="tabs"></div>
 <section class="pane on" id="ch"><div class="live">aktualizuje sa automaticky</div><div class="hint" id="hint"></div><div class="strip" id="strip"></div><div id="chl"></div><div id="lkd"></div></section>
 <section class="pane" id="pr"><div class="prizes" id="prl"></div></section>
+<section class="pane" id="fn"><div class="fun">
+ <div class="fc"><h3>🎯 Môj tracker – 5 000 Kč</h3><p>Pridaj hodnotu zmluvy v Kč a sleduj, ako sa plní cieľ.</p>
+  <div class="pb"><i id="tbar"></i><b id="rkt">🚀</b></div><div class="trs"><span id="tsum"></span><span id="tgoal"></span></div>
+  <div style="display:flex;gap:8px;margin:12px 0"><input id="tin" type="number" min="1" placeholder="Kč" style="flex:1;min-width:0"><button class="m" id="tadd" type="button">Pridať zmluvu</button></div>
+  <div class="tl" id="tl"></div><p id="tdone" class="tdone" hidden>🏆 5 000 Kč splnené! Nahlás to vedúcemu.</p>
+  <p class="note">Tvoj osobný tracker vidíš len ty (ukladá sa v tvojom prehliadači). Oficiálny zápis robí vedúci.</p></div>
+ <div class="fc"><h3>🥫 Chyť plechovku</h3><p>Klikaj na plechovky, vyhni sa bombám 💣. Máš 20 sekúnd!</p>
+  <div class="gbar"><span>Skóre: <b id="gsc">0</b></span><span>Čas: <b id="gtm">20</b></span><span>Rekord: <b id="gbe">0</b></span></div>
+  <div class="garea" id="garea"></div><button class="m" id="gst" type="button" style="margin-top:10px">Štart ⚡</button></div>
+ <div class="fc" style="grid-column:1/-1"><h3>🧠 Mini kvíz</h3><p>Tréningové otázky – nie sú otázky zo štvrtkového testu.</p><div id="qz"></div></div>
+</div></section>
 <section class="pane" id="wh">
  <div class="wheelw">
   <div class="wb" id="wb"><svg viewBox="0 0 400 400"><defs><radialGradient id="rg"><stop offset="0" stop-color="#2a3a10"/><stop offset="1" stop-color="#0a0f00"/></radialGradient></defs>
@@ -168,7 +201,7 @@ button.g{background:transparent;color:var(--mut);border:1px solid var(--bd);bord
    <g id="disc"></g>
    <circle cx="200" cy="200" r="38" fill="#000" stroke="#95d600" stroke-width="5"/><text x="200" y="213" font-size="38" text-anchor="middle">⚡</text>
    <g id="ptr"><path d="M184 4h32l-16 40z" fill="#fff" stroke="#95d600" stroke-width="4" stroke-linejoin="round"/></g></svg></div>
-  <div class="res"><h3>Streda · Kolo šťastia</h3><div id="rs"><p>Čakáme na zatočenie…</p></div><button class="m" id="sp" hidden>Zatočiť ⚡</button><p id="wnote">Kolom točí vedúci – sleduješ naživo 👀</p><div class="hist" id="hs"></div></div>
+  <div class="res"><h3>Streda · Kolo šťastia</h3><p class="req">🎟️ Točíš po uzavretí zmluvy aspoň za 1 000 Kč (≈ 40 €).</p><div id="rs"><p>Čakáme na zatočenie…</p></div><button class="m" id="sp" hidden>Zatočiť ⚡</button><p id="wnote">Kolom točí vedúci – sleduješ naživo 👀</p><div class="hist" id="hs"></div></div>
  </div>
 </section>
 <section class="pane" id="zp">
@@ -188,9 +221,9 @@ const IM={mon:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKgAAAGZCAYAAAAdGno
 const R=(k,t,b)=>`<span class="chip"><img src="${IM[k]}" alt="">${b?"<b>"+b+"</b>":""}${t}</span>`;
 const PICK=`<span class="chip">🎁 výber z odmien</span>`;
 const DAYS=[
- {k:"po",i:"💰",d:"Pondelok",h:"Prvá zmluva za 3 000 Kč",big:'3 000 Kč<small>≈ 120 € · prvá zmluva v hodnote aspoň toľko</small>',p:"Kto ako prvý uzavrie zmluvu v tejto hodnote, vyhráva.",r:PICK},
+ {k:"po",i:"💰",d:"Pondelok",h:"Zmluvy za 5 000 Kč",big:'5 000 Kč<small>≈ 200 € · akumulované zmluvy za deň</small>',p:"Sčítavaj hodnoty svojich zmlúv za deň – kto prvý dosiahne 5 000 Kč, vyhráva.",r:PICK},
  {k:"ut",i:"⏱️",d:"Utorok",h:"Najlepšia neproduktivita",big:'1 h 50 min<small>norma neproduktivity za deň</small>',p:"Vyhráva operátor s najlepšou neproduktivitou dňa."},
- {k:"st",i:"🎡",d:"Streda",h:"Kolo šťastia",big:'☕ Káva / ⚡ Monster<small>kolo šťastia · PVZP – Generali</small>',p:"Zatoč kolom a vyhraj kávu alebo Monster.",r:R("mrb","Káva")+R("mon","Monster")+'<button class="go" onclick="tab(\'wh\')">Ísť na kolo 🎡</button>'},
+ {k:"st",i:"🎡",d:"Streda",h:"Kolo šťastia",big:'☕ Káva / ⚡ Monster<small>zmluva aspoň za 1 000 Kč (≈ 40 €) · PVZP – Generali</small>',p:"Uzavri zmluvu aspoň za 1 000 Kč (≈ 40 €) a zatoč kolom – vyhráš kávu alebo Monster.",r:R("mrb","Káva")+R("mon","Monster")+'<button class="go" onclick="tab(\'wh\')">Ísť na kolo 🎡</button>'},
  {k:"ct",i:"🧠",d:"Štvrtok",h:"3 otázky z testov",big:'3 otázky<small>správne odpovede = odmena</small>',p:"Čím viac správnych odpovedí, tým lepšia odmena.",r:R("mon","2 správne",2)+R("mrb","1 správna",1)+`<span class="chip"><b>3</b> správne = výber</span>`},
  {k:"pi",i:"📞",d:"Piatok",h:"Hodnotenie hovorov",big:'100 %<small>alebo 85 – 95 % hodnotenie</small>',p:"Pozná sa kvalita tvojich hovorov.",r:R("lay","","100 %")+R("mon","")+R("mrb","")+`<span class="chip"><b>85–95 %</b> 1 výber</span>`}];
 // =====================================
@@ -203,7 +236,7 @@ const wk=d0.getFullYear()+"-"+(d0.getMonth()+1)+"-"+d0.getDate();
 let view=td>4?-1:td,entries=[],contracts={},db=null,admin=false,cur="ch",seen=null;
 const nm=id=>(OPS.find(o=>o.id===id)||{n:"?"}).n,byDay=k=>entries.filter(e=>e.wk===wk&&e.dy===k);
 $("prl").innerHTML=[["mon","Monster White Zero","Energy bez cukru","#95d60055",0],["mrb","Mr. Brown Cappuccino","Plechovka kávy","#c98a5566",1],["lay","Lay's chipsy","Chrumky na pracovný deň","#ffd21f55",0]].map((x,i)=>`<div class="prize" style="--c:${x[3]};--i:${i}"><div class="im">${x[4]?'<i class="st" style="margin-left:-22px"></i><i class="st" style="animation-delay:.8s"></i><i class="st" style="margin-left:20px;animation-delay:1.5s"></i>':""}<img src="${IM[x[0]]}" alt="${x[1]}"></div><b>${x[1]}</b><span>${x[2]}</span></div>`).join("");
-function buildTabs(){const L=[["ch","🔥 Dnešná výzva"],["pr","🎁 Odmeny"]];if(admin||td===2)L.push(["wh","🎡 Kolo šťastia"]);if(admin)L.push(["zp","✍️ Zápis"]);
+function buildTabs(){const L=[["ch","🔥 Dnešná výzva"],["pr","🎁 Odmeny"],["fn","🎮 Zábava"]];if(admin||td===2)L.push(["wh","🎡 Kolo šťastia"]);if(admin)L.push(["zp","✍️ Zápis"]);
  $("tabs").innerHTML=L.map(x=>`<button class="tab${x[0]===cur?" on":""}" data-t="${x[0]}">${x[1]}</button>`).join("")}
 function tab(t){cur=t;buildTabs();document.querySelectorAll(".pane").forEach(p=>p.classList.toggle("on",p.id===t));window.scrollTo({top:$("tabs").offsetTop-10,behavior:"smooth"})}
 $("tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(b)tab(b.dataset.t)});
@@ -232,8 +265,9 @@ const SL=[["☕ KÁVA","#a8652f"],["⚡ MONSTER","#95d600"]],N=10,A=360/N;let ro
 const pt=(a,r)=>[200+r*Math.sin(a*Math.PI/180),200-r*Math.cos(a*Math.PI/180)];
 $("disc").innerHTML=Array.from({length:N},(_,i)=>{const [x1,y1]=pt(i*A,168),[x2,y2]=pt((i+1)*A,168),[c,col]=SL[i%2];return `<path d="M200 200L${x1} ${y1}A168 168 0 0 1 ${x2} ${y2}Z" fill="${col}" stroke="#000" stroke-width="3"/><text transform="rotate(${i*A+A/2} 200 200)" x="200" y="62" text-anchor="middle" fill="${i%2?"#000":"#fff"}" font-family="Impact,Arial Black" font-size="16" letter-spacing="1">${c}</text>`}).join("");
 $("bulbs").innerHTML=Array.from({length:24},(_,i)=>{const [x,y]=pt(i*15,180);return `<circle class="bulb" cx="${x}" cy="${y}" r="5" fill="${i%2?"#c6ff2e":"#fff"}"/>`}).join("");
-var runSpin=function(s,anim){const c=((rot%360)+360)%360,tg=(360-s.off)%360,d=$("disc");rot+=(anim?360*7:0)+((tg-c)+360)%360;
- d.style.transition=anim?"":"none";void d.getBoundingClientRect();d.style.transform=`rotate(${rot}deg)`;
+var runSpin=function(s,anim){const c=((rot%360)+360)%360,tg=(360-s.off)%360,d=$("disc");const from=rot;rot+=(anim?360*7:0)+((tg-c)+360)%360;
+ d.style.transition="none";d.style.transform=`rotate(${rot}deg)`;
+ if(anim&&d.animate)d.animate([{transform:`rotate(${from}deg)`},{transform:`rotate(${rot}deg)`}],{duration:6000,easing:"cubic-bezier(.12,.7,.08,1)"});
  const fin=()=>{const q=SL[s.w%2];busy=false;$("sp").disabled=false;$("wb").classList.remove("spin");
   $("rs").innerHTML=`<div class="win" style="color:${q[1]};text-shadow:0 0 30px ${q[1]}">${q[0]}</div><p>Gratulujem, túto odmenu si vyhral!</p>`;
   hist.unshift(q);$("hs").innerHTML=hist.slice(0,8).map(h=>`<i style="color:${h[1]}">${h[0]}</i>`).join("");if(anim){confetti();fanfare()}};
@@ -251,7 +285,7 @@ function sync(){drawStrip();drawWon();renderTable();$("out").value=JSON.stringif
 $("f").addEventListener("submit",ev=>{ev.preventDefault();entries.unshift({id:"n"+Date.now(),op:$("op").value,dy:$("dy").value,nt:$("nt").value.trim(),ts:Date.now(),wk});$("nt").value="";$("st").textContent="✅ Pridané – skopíruj JSON nižšie do data.json na GitHube.";sync();confetti()});
 $("rows").addEventListener("click",ev=>{const x=ev.target.dataset.x;if(!x||!confirm("Zmazať záznam?"))return;entries=entries.filter(e=>e.id!==x);sync()});
 $("cp").onclick=()=>{$("out").select();try{navigator.clipboard.writeText($("out").value)}catch(e){document.execCommand("copy")}$("st").textContent="📋 Skopírované."};
-$("sp").onclick=()=>{if(busy)return;const w=Math.floor(Math.random()*N),s={w,off:w*A+A*(.15+Math.random()*.7),id:Date.now()};wheelState=s;lastSpin=s.id;runSpin(s,true);sync()};
+$("sp").onclick=()=>{if(busy)return;if(!confirm("Potvrď: operátor má zmluvu aspoň za 1 000 Kč (≈ 40 €)."))return;const w=Math.floor(Math.random()*N),s={w,off:w*A+A*(.15+Math.random()*.7),id:Date.now()};wheelState=s;lastSpin=s.id;runSpin(s,true);sync()};
 async function load(){try{const r=await fetch("data.json?"+Date.now(),{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json();
  entries=(j.entries||[]).map((e,i)=>({id:"e"+i,...e})).sort((a,b)=>b.ts-a.ts);
  if(seen&&!admin)entries.filter(e=>e.wk===wk&&!seen.has(e.id)).forEach(e=>{toast("🎉 "+nm(e.op)+" splnil(a) výzvu – "+((DAYS.find(d=>d.k===e.dy)||{}).d||""));confetti()});
@@ -284,7 +318,10 @@ function hint(){const e=$("hint");e.classList.add("out");setTimeout(()=>{hi=(hi+
 $("hint").textContent=H.sk[hi];setInterval(hint,7000);
 
 // ===== SK / CZ =====
-const CZ=[["Päť dní, päť výziev. Chráň domov klientov, naber energiu a vyhraj.","Pět dní, pět výzev. Chraň domov klientů, nabij energii a vyhraj."],["Týždeň","Týden"],["nováčikov","nováčků"],["Poistenie","Pojištění"],["POISTENIE","POJIŠTĚNÍ"],["DOMÁCNOSŤ","DOMÁCNOST"],
+const CZ=[["zmluva aspoň za 1 000 Kč (≈ 40 €) · PVZP – Generali","smlouva alespoň za 1 000 Kč (≈ 40 €) · PVZP – Generali"],["Uzavri zmluvu aspoň za 1 000 Kč (≈ 40 €) a zatoč kolom – vyhráš kávu alebo Monster.","Uzavři smlouvu alespoň za 1 000 Kč (≈ 40 €) a zatoč kolem – vyhraješ kávu nebo Monster."],["🎟️ Točíš po uzavretí zmluvy aspoň za 1 000 Kč (≈ 40 €).","🎟️ Točíš po uzavření smlouvy alespoň za 1 000 Kč (≈ 40 €)."],["Zmluvy za 5 000 Kč","Smlouvy za 5 000 Kč"],["≈ 200 € · akumulované zmluvy za deň","≈ 200 € · akumulované smlouvy za den"],["Sčítavaj hodnoty svojich zmlúv za deň – kto prvý dosiahne 5 000 Kč, vyhráva.","Sčítej hodnoty svých smluv za den – kdo první dosáhne 5 000 Kč, vyhrává."],
+["Môj tracker – 5 000 Kč","Můj tracker – 5 000 Kč"],["Pridaj hodnotu zmluvy v Kč a sleduj, ako sa plní cieľ.","Přidej hodnotu smlouvy v Kč a sleduj, jak se plní cíl."],["Pridať zmluvu","Přidat smlouvu"],["🏆 5 000 Kč splnené! Nahlás to vedúcemu.","🏆 5 000 Kč splněno! Nahlas to vedoucímu."],["Tvoj osobný tracker vidíš len ty (ukladá sa v tvojom prehliadači). Oficiálny zápis robí vedúci.","Svůj osobní tracker vidíš jen ty (ukládá se ve tvém prohlížeči). Oficiální zápis dělá vedoucí."],
+["Klikaj na plechovky, vyhni sa bombám 💣. Máš 20 sekúnd!","Klikej na plechovky, vyhni se bombám 💣. Máš 20 sekund!"],["Štart ⚡","Start ⚡"],["Tréningové otázky – nie sú otázky zo štvrtkového testu.","Tréninkové otázky – nejsou otázky ze čtvrtečního testu."],
+["Päť dní, päť výziev. Chráň domov klientov, naber energiu a vyhraj.","Pět dní, pět výzev. Chraň domov klientů, nabij energii a vyhraj."],["Týždeň","Týden"],["nováčikov","nováčků"],["Poistenie","Pojištění"],["POISTENIE","POJIŠTĚNÍ"],["DOMÁCNOSŤ","DOMÁCNOST"],
 ["🔥 Dnešná výzva","🔥 Dnešní výzva"],["🎁 Odmeny","🎁 Odměny"],["Kolo šťastia","Kolo štěstí"],["kolo šťastia","kolo štěstí"],["aktualizuje sa automaticky","aktualizuje se automaticky"],
 ["Pondelok","Pondělí"],["Utorok","Úterý"],["Streda","Středa"],["Štvrtok","Čtvrtek"],["Piatok","Pátek"],["pondelok","pondělí"],["utorok","úterý"],["streda","středa"],["štvrtok","čtvrtek"],["piatok","pátek"],
 ["Prvá zmluva za 3 000 Kč","První smlouva za 3 000 Kč"],["≈ 120 € · prvá zmluva v hodnote aspoň toľko","≈ 120 € · první smlouva v hodnotě alespoň tolik"],["Kto ako prvý uzavrie zmluvu v tejto hodnote, vyhráva.","Kdo jako první uzavře smlouvu v této hodnotě, vyhrává."],["🎁 výber z odmien","🎁 výběr z odměn"],
@@ -307,6 +344,43 @@ function setLang(l){lang=l;try{localStorage.setItem("lang",l)}catch(e){}document
 $("lg").addEventListener("click",e=>{const b=e.target.closest("button[data-l]");if(b)setLang(b.dataset.l)});
 let L0="sk";try{L0=localStorage.getItem("lang")||((navigator.language||"").startsWith("cs")?"cz":"sk")}catch(e){}
 if(L0==="cz")setLang("cz");
+
+// ===== zábava =====
+const GOAL=5000,RATE=25,TKY="trk-"+wk;let TR=[];try{TR=JSON.parse(localStorage.getItem(TKY)||"[]")}catch(e){}
+function drawTrk(){const sum=TR.reduce((a,b)=>a+b,0),pct=Math.min(100,sum/GOAL*100);$("tbar").style.width=pct+"%";$("rkt").style.left=Math.max(3,Math.min(97,pct))+"%";
+ $("tsum").textContent=sum.toLocaleString("sk-SK")+" Kč · ≈ "+Math.round(sum/RATE)+" €";$("tgoal").textContent="z 5 000 Kč";
+ $("tl").innerHTML=TR.map((v,i)=>`<span data-i="${i}">${v} Kč ✕</span>`).join("");$("tdone").hidden=sum<GOAL;return sum}
+const svT=()=>{try{localStorage.setItem(TKY,JSON.stringify(TR))}catch(e){}};
+$("tadd").onclick=()=>{const v=Math.round(+$("tin").value);if(!(v>0))return;const b=drawTrk();TR.push(v);svT();const a=drawTrk();$("tin").value="";if(b<GOAL&&a>=GOAL){confetti();fanfare()}else pop()};
+$("tin").addEventListener("keydown",e=>{if(e.key==="Enter")$("tadd").click()});
+$("tl").addEventListener("click",e=>{const i=e.target.dataset.i;if(i==null)return;TR.splice(+i,1);svT();drawTrk()});
+drawTrk();
+let best=0;try{best=+localStorage.getItem("best")||0}catch(e){}$("gbe").textContent=best;let playing=false;
+$("gst").onclick=()=>{if(playing)return;playing=true;const A=$("garea");A.innerHTML="";let sc=0,tl=20,items=[],sp=0;$("gsc").textContent=0;$("gtm").textContent=20;$("gst").disabled=true;pop();
+ const iv=setInterval(()=>{tl--;$("gtm").textContent=tl;if(tl<=0)end()},1000);
+ function spawn(){const bad=Math.random()<.2,e=document.createElement(bad?"span":"img");e.className="gi"+(bad?" bad":"");if(bad)e.textContent="💣";else e.src=IM[["mon","mrb","lay"][Math.floor(Math.random()*3)]];
+  e.style.left=Math.random()*(A.clientWidth-50)+"px";e.style.top="-60px";A.appendChild(e);const o={e,y:-60,v:1.8+Math.random()*2.2+(20-tl)*.08};
+  e.onpointerdown=ev=>{ev.preventDefault();if(o.d)return;o.d=1;sc=Math.max(0,sc+(bad?-3:1));$("gsc").textContent=sc;beep(bad?200:880,.08,0,bad?"sawtooth":"square",.05);e.classList.add("pop");setTimeout(()=>e.remove(),300)};items.push(o)}
+ function loop(t){if(!playing)return;if(t-sp>Math.max(280,650-(20-tl)*18)){sp=t;spawn()}items.forEach(o=>{if(o.d)return;o.y+=o.v;o.e.style.top=o.y+"px";if(o.y>A.clientHeight){o.d=1;o.e.remove()}});requestAnimationFrame(loop)}
+ function end(){clearInterval(iv);playing=false;$("gst").disabled=false;A.innerHTML=`<div class="gmsg">Hra skončila!<br>Skóre: ${sc}${sc>best?"<br>Nový rekord! 🎉":""}</div>`;if(sc>best){best=sc;try{localStorage.setItem("best",best)}catch(e){}$("gbe").textContent=best;confetti();fanfare()}else pop()}
+ requestAnimationFrame(loop)};
+const QS=[
+ {q:["Čo je poistná suma?","Co je pojistná částka?"],o:[["Horná hranica plnenia poisťovne","Horní hranice plnění pojišťovny"],["Mesačná platba klienta","Měsíční platba klienta"],["Provízia operátora","Provize operátora"]],a:0},
+ {q:["Čo je spoluúčasť?","Co je spoluúčast?"],o:[["Časť škody, ktorú hradí klient","Část škody, kterou hradí klient"],["Zľava za vernosť","Sleva za věrnost"],["Poplatok za uzavretie","Poplatek za uzavření"]],a:0},
+ {q:["Ktoré poistenie kryje škodu spôsobenú inému?","Které pojištění kryje škodu způsobenou jinému?"],o:[["Poistenie zodpovednosti","Pojištění odpovědnosti"],["Poistenie stavby","Pojištění stavby"],["Cestovné poistenie","Cestovní pojištění"]],a:0},
+ {q:["Čo je poistné?","Co je pojistné?"],o:[["Platba klienta za poistenie","Platba klienta za pojištění"],["Odškodné od poisťovne","Odškodné od pojišťovny"],["Cena nehnuteľnosti","Cena nemovitosti"]],a:0},
+ {q:["Čo je poistná udalosť?","Co je pojistná událost?"],o:[["Udalosť, na ktorú sa poistenie vzťahuje","Událost, na kterou se pojištění vztahuje"],["Podpis zmluvy","Podpis smlouvy"],["Zmena adresy klienta","Změna adresy klienta"]],a:0},
+ {q:["Čo poistenie domácnosti kryje najmä?","Co pojištění domácnosti kryje zejména?"],o:[["Vybavenie bytu – nábytok, spotrebiče","Vybavení bytu – nábytek, spotřebiče"],["Nosné múry domu","Nosné zdi domu"],["Pozemok","Pozemek"]],a:0}];
+let qs=[],qi=0,qsc=0;const Lg=(a)=>lang==="cz"?a[1]:a[0];
+function startQ(){qs=QS.slice().sort(()=>Math.random()-.5).slice(0,3);qi=0;qsc=0;drawQ()}
+function drawQ(){const el=$("qz");if(qi>=qs.length){const m=qsc===3?["🏆 Poistkový expert!","🏆 Pojišťovací expert!"]:qsc===2?["👍 Skoro dokonalé!","👍 Skoro dokonalé!"]:["💪 Ešte potrénuj!","💪 Ještě potrénuj!"];
+  el.innerHTML=`<div class="qq">${Lg(m)} (${qsc}/3)</div><button class="m" id="qr" type="button">${lang==="cz"?"Znovu":"Znova"} ⚡</button>`;$("qr").onclick=startQ;if(qsc===3){confetti();fanfare()}return}
+ const q=qs[qi],ord=q.o.map((x,i)=>i).sort(()=>Math.random()-.5);
+ el.innerHTML=`<div class="qh">${lang==="cz"?"Otázka":"Otázka"} ${qi+1}/3</div><div class="qq">${esc(Lg(q.q))}</div>`+ord.map(i=>`<button class="qo" type="button" data-i="${i}">${esc(Lg(q.o[i]))}</button>`).join("")}
+$("qz").addEventListener("click",e=>{const b=e.target.closest(".qo");if(!b||b.dataset.d)return;const q=qs[qi],ok=+b.dataset.i===q.a;
+ document.querySelectorAll(".qo").forEach(x=>{x.dataset.d=1;if(+x.dataset.i===q.a)x.classList.add("ok")});if(!ok)b.classList.add("no");else{qsc++;pop()}
+ setTimeout(()=>{qi++;drawQ()},1100)});
+const _sl2=setLang;setLang=function(l){_sl2(l);if(qi<qs.length)drawQ()};startQ();
 </script>
 </body>
 </html>
