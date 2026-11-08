@@ -131,27 +131,10 @@ button.g{background:transparent;color:var(--mut);border:1px solid var(--bd);bord
 .hint{margin:0 0 14px;padding:11px 16px;border-radius:14px;background:linear-gradient(90deg,#1b2a05,#0d1113);border:1px solid #2c3a10;font-weight:700;color:var(--g2);transition:opacity .4s,transform .4s}
 .hint.out{opacity:0;transform:translateY(6px)}
 
-.fun{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:18px}
-.fc{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:20px;opacity:0;animation:cin .7s forwards}.fc:nth-child(2){animation-delay:.12s}.fc:nth-child(3){animation-delay:.24s}
-.fc h3{margin:0 0 6px;font:900 24px Impact,sans-serif;text-transform:uppercase}.fc>p{color:var(--mut);margin:0 0 12px}
-.pb{height:30px;border-radius:20px;background:#0b1000;border:1px solid #2c3a10;position:relative;margin:30px 0 8px}
-.pb i{display:block;height:100%;width:0;border-radius:20px;background:repeating-linear-gradient(45deg,var(--g) 0 12px,var(--g2) 12px 24px);background-size:34px 34px;animation:stp 1s linear infinite;transition:width .9s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 18px var(--g)}
-@keyframes stp{to{background-position:34px 0}}
-.pb b{position:absolute;top:-24px;left:3%;font-size:34px;transition:left .9s cubic-bezier(.2,.8,.2,1);transform:translateX(-50%);animation:bob 1.6s infinite}
-.trs{display:flex;justify-content:space-between;font-weight:800}
-.tl{display:flex;flex-wrap:wrap;gap:6px}.tl span{background:#0b1000;border:1px solid #2c3a10;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s}.tl span:hover{border-color:#e2231a}
-.tdone{font:900 20px Impact,sans-serif;color:var(--g2);animation:pop .7s cubic-bezier(.2,1.6,.4,1)}
-.gbar{display:flex;justify-content:space-between;font-weight:800;margin-bottom:8px}.gbar b{color:var(--g)}
-.garea{position:relative;height:340px;border-radius:16px;overflow:hidden;border:1px solid var(--bd);background:radial-gradient(ellipse at 50% 100%,#1d3a00,#07090a 70%);touch-action:manipulation;user-select:none}
-.gi{position:absolute;width:46px;cursor:pointer;-webkit-user-drag:none;filter:drop-shadow(0 6px 8px rgba(0,0,0,.7))}.gi.bad{font-size:36px;width:auto;line-height:1}
-.gi.pop{animation:px .3s forwards}@keyframes px{to{transform:scale(1.9) rotate(20deg);opacity:0}}
-.gmsg{position:absolute;inset:0;display:grid;place-content:center;text-align:center;font:900 26px Impact,sans-serif;text-transform:uppercase;color:var(--g2);text-shadow:0 0 20px var(--g)}
-.qo{display:block;width:100%;text-align:left;margin:7px 0;background:#0d1113;color:var(--tx);border:2px solid var(--bd);box-shadow:none;text-transform:none;letter-spacing:0;font:600 15px system-ui;padding:12px 14px;border-radius:12px;cursor:pointer;transition:.2s}
-.qo:hover{border-color:var(--g);transform:translateX(4px) scale(1)}
-.qo.ok{border-color:var(--g);background:#122200;animation:px2 .4s}.qo.no{border-color:#e2231a;background:#2a0a08;animation:shk .4s}
-@keyframes px2{50%{transform:scale(1.04)}}@keyframes shk{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-.qh{font-weight:800;color:var(--g);margin-bottom:4px}.qq{font:700 18px system-ui;margin:4px 0 8px}
 .res .req{background:#0b1000;border:1px solid #2c3a10;border-radius:12px;padding:6px 14px;color:var(--g2);font-weight:700}
+#tbn{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:10px;z-index:70;display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#3a2a00;border:2px dashed #ffb300;color:#ffd66b;border-radius:14px;padding:6px 12px;font-weight:700;font-size:13px;max-width:calc(100vw - 190px)}
+#tbn[hidden]{display:none}#tbn select{font:inherit;padding:4px 8px;border-radius:8px;background:#0d1113;color:#fff;border:1px solid #ffb300}
+#lg #tst.on{background:#ffb300;color:#000}
 </style>
 </head>
 <body>
@@ -169,7 +152,8 @@ button.g{background:transparent;color:var(--mut);border:1px solid var(--bd);bord
  <div class="cn cC"><div class="fx"><img data-k="mrb" alt=""></div></div>
  <div class="cn cD"><div class="fx"><img data-k="mon" alt=""></div></div>
 </div>
-<div id="lg"><button data-l="sk" class="on">SK</button><button data-l="cz">CZ</button><button id="snd" title="Zvuk">🔊</button></div>
+<div id="tbn" hidden>🧪 TESTOVACÍ REŽIM · nič sa neukladá · deň: <select id="tsd"><option value="0">Pondelok</option><option value="1">Utorok</option><option value="2">Streda</option><option value="3">Štvrtok</option><option value="4">Piatok</option></select></div>
+<div id="lg"><button data-l="sk" class="on">SK</button><button data-l="cz">CZ</button><button id="tst" hidden>🧪 TEST</button><button id="snd" title="Zvuk">🔊</button></div>
 <div class="w">
 <div class="hero">
  <svg class="claw" viewBox="0 0 200 240"><path d="M30 0h34l18 150-26 90h-8z"/><path d="M84 0h30l-4 120-18 100h-10z"/><path d="M134 0h30l22 140-34 70h-8z"/></svg>
@@ -183,17 +167,6 @@ button.g{background:transparent;color:var(--mut);border:1px solid var(--bd);bord
 <div class="tabs" id="tabs"></div>
 <section class="pane on" id="ch"><div class="live">aktualizuje sa automaticky</div><div class="hint" id="hint"></div><div class="strip" id="strip"></div><div id="chl"></div><div id="lkd"></div></section>
 <section class="pane" id="pr"><div class="prizes" id="prl"></div></section>
-<section class="pane" id="fn"><div class="fun">
- <div class="fc"><h3>🎯 Môj tracker – 5 000 Kč</h3><p>Pridaj hodnotu zmluvy v Kč a sleduj, ako sa plní cieľ.</p>
-  <div class="pb"><i id="tbar"></i><b id="rkt">🚀</b></div><div class="trs"><span id="tsum"></span><span id="tgoal"></span></div>
-  <div style="display:flex;gap:8px;margin:12px 0"><input id="tin" type="number" min="1" placeholder="Kč" style="flex:1;min-width:0"><button class="m" id="tadd" type="button">Pridať zmluvu</button></div>
-  <div class="tl" id="tl"></div><p id="tdone" class="tdone" hidden>🏆 5 000 Kč splnené! Nahlás to vedúcemu.</p>
-  <p class="note">Tvoj osobný tracker vidíš len ty (ukladá sa v tvojom prehliadači). Oficiálny zápis robí vedúci.</p></div>
- <div class="fc"><h3>🥫 Chyť plechovku</h3><p>Klikaj na plechovky, vyhni sa bombám 💣. Máš 20 sekúnd!</p>
-  <div class="gbar"><span>Skóre: <b id="gsc">0</b></span><span>Čas: <b id="gtm">20</b></span><span>Rekord: <b id="gbe">0</b></span></div>
-  <div class="garea" id="garea"></div><button class="m" id="gst" type="button" style="margin-top:10px">Štart ⚡</button></div>
- <div class="fc" style="grid-column:1/-1"><h3>🧠 Mini kvíz</h3><p>Tréningové otázky – nie sú otázky zo štvrtkového testu.</p><div id="qz"></div></div>
-</div></section>
 <section class="pane" id="wh">
  <div class="wheelw">
   <div class="wb" id="wb"><svg viewBox="0 0 400 400"><defs><radialGradient id="rg"><stop offset="0" stop-color="#2a3a10"/><stop offset="1" stop-color="#0a0f00"/></radialGradient></defs>
@@ -231,12 +204,12 @@ const $=s=>document.getElementById(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 document.querySelectorAll("img[data-k]").forEach(i=>i.src=IM[i.dataset.k]);
 const T="⚡ ENERGY &nbsp;•&nbsp; 🛡️ POISTENIE &nbsp;•&nbsp; ☕ KÁVA &nbsp;•&nbsp; 🏠 DOMÁCNOSŤ &nbsp;•&nbsp; ";$("tk").innerHTML=T.repeat(8);
-const START=new Date(2026,10,9),before=new Date()<START,td=before?-1:(new Date().getDay()+6)%7,d0=new Date();d0.setDate(d0.getDate()-((new Date().getDay()+6)%7));
-const wk=d0.getFullYear()+"-"+(d0.getMonth()+1)+"-"+d0.getDate();
+const START=new Date(2026,10,9);let before=new Date()<START,td=before?-1:(new Date().getDay()+6)%7;const d0=new Date();d0.setDate(d0.getDate()-((new Date().getDay()+6)%7));
+let wk=d0.getFullYear()+"-"+(d0.getMonth()+1)+"-"+d0.getDate();
 let view=td>4?-1:td,entries=[],contracts={},db=null,admin=false,cur="ch",seen=null;
 const nm=id=>(OPS.find(o=>o.id===id)||{n:"?"}).n,byDay=k=>entries.filter(e=>e.wk===wk&&e.dy===k);
 $("prl").innerHTML=[["mon","Monster White Zero","Energy bez cukru","#95d60055",0],["mrb","Mr. Brown Cappuccino","Plechovka kávy","#c98a5566",1],["lay","Lay's chipsy","Chrumky na pracovný deň","#ffd21f55",0]].map((x,i)=>`<div class="prize" style="--c:${x[3]};--i:${i}"><div class="im">${x[4]?'<i class="st" style="margin-left:-22px"></i><i class="st" style="animation-delay:.8s"></i><i class="st" style="margin-left:20px;animation-delay:1.5s"></i>':""}<img src="${IM[x[0]]}" alt="${x[1]}"></div><b>${x[1]}</b><span>${x[2]}</span></div>`).join("");
-function buildTabs(){const L=[["ch","🔥 Dnešná výzva"],["pr","🎁 Odmeny"],["fn","🎮 Zábava"]];if(admin||td===2)L.push(["wh","🎡 Kolo šťastia"]);if(admin)L.push(["zp","✍️ Zápis"]);
+function buildTabs(){const L=[["ch","🔥 Dnešná výzva"],["pr","🎁 Odmeny"]];if(admin||td===2)L.push(["wh","🎡 Kolo šťastia"]);if(admin)L.push(["zp","✍️ Zápis"]);
  $("tabs").innerHTML=L.map(x=>`<button class="tab${x[0]===cur?" on":""}" data-t="${x[0]}">${x[1]}</button>`).join("")}
 function tab(t){cur=t;buildTabs();document.querySelectorAll(".pane").forEach(p=>p.classList.toggle("on",p.id===t));window.scrollTo({top:$("tabs").offsetTop-10,behavior:"smooth"})}
 $("tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(b)tab(b.dataset.t)});
@@ -280,17 +253,17 @@ $("sp").onclick=()=>{if(busy)return;$("sp").disabled=true;const w=Math.floor(Mat
 $("op").innerHTML=OPS.map(o=>`<option value="${o.id}">${o.t} · ${esc(o.n)}</option>`).join("");
 $("dy").innerHTML=DAYS.map((x,i)=>`<option value="${x.k}"${i===td?" selected":""}>${x.d}</option>`).join("");
 function renderTable(){$("rows").innerHTML=entries.length?entries.map(e=>{const d=DAYS.find(x=>x.k===e.dy);return `<tr><td>${new Date(e.ts).toLocaleString("sk-SK",{day:"numeric",month:"numeric",hour:"2-digit",minute:"2-digit"})}</td><td>${esc(nm(e.op))}</td><td>${d?d.i+" "+d.d:""}</td><td>${esc(e.nt||"")}</td><td><button class="g" data-x="${e.id}">zmazať</button></td></tr>`}).join(""):'<tr><td colspan="5" class="wait">Zatiaľ nič nezapísané.</td></tr>'}
-let wheelState=null;
-function sync(){drawStrip();drawWon();renderTable();$("out").value=JSON.stringify({entries:entries.map(({id,...r})=>r).sort((a,b)=>a.ts-b.ts),wheel:wheelState},null,1)}
+let wheelState=null,test=false,real=null;
+function sync(){drawStrip();drawWon();renderTable();if(!test)$("out").value=JSON.stringify({entries:entries.map(({id,...r})=>r).sort((a,b)=>a.ts-b.ts),wheel:wheelState},null,1)}
 $("f").addEventListener("submit",ev=>{ev.preventDefault();entries.unshift({id:"n"+Date.now(),op:$("op").value,dy:$("dy").value,nt:$("nt").value.trim(),ts:Date.now(),wk});$("nt").value="";$("st").textContent="✅ Pridané – skopíruj JSON nižšie do data.json na GitHube.";sync();confetti()});
 $("rows").addEventListener("click",ev=>{const x=ev.target.dataset.x;if(!x||!confirm("Zmazať záznam?"))return;entries=entries.filter(e=>e.id!==x);sync()});
 $("cp").onclick=()=>{$("out").select();try{navigator.clipboard.writeText($("out").value)}catch(e){document.execCommand("copy")}$("st").textContent="📋 Skopírované."};
-$("sp").onclick=()=>{if(busy)return;if(!confirm("Potvrď: operátor má zmluvu aspoň za 1 000 Kč (≈ 40 €)."))return;const w=Math.floor(Math.random()*N),s={w,off:w*A+A*(.15+Math.random()*.7),id:Date.now()};wheelState=s;lastSpin=s.id;runSpin(s,true);sync()};
-async function load(){try{const r=await fetch("data.json?"+Date.now(),{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json();
+$("sp").onclick=()=>{if(busy)return;if(!test&&!confirm("Potvrď: operátor má zmluvu aspoň za 1 000 Kč (≈ 40 €)."))return;const w=Math.floor(Math.random()*N),s={w,off:w*A+A*(.15+Math.random()*.7),id:Date.now()};wheelState=s;lastSpin=s.id;runSpin(s,true);sync()};
+async function load(){try{const r=await fetch("data.json?"+Date.now(),{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json();if(test){firstW=false;return}
  entries=(j.entries||[]).map((e,i)=>({id:"e"+i,...e})).sort((a,b)=>b.ts-a.ts);
  if(seen&&!admin)entries.filter(e=>e.wk===wk&&!seen.has(e.id)).forEach(e=>{toast("🎉 "+nm(e.op)+" splnil(a) výzvu – "+((DAYS.find(d=>d.k===e.dy)||{}).d||""));confetti()});
  seen=new Set(entries.map(e=>e.id));wheelState=j.wheel||null;drawStrip();drawWon();renderTable();if(admin)sync();if(wheelState)applySpin(wheelState)}catch(e){}firstW=false}
-admin=location.hash==="#admin";$("sp").hidden=!admin;$("wnote").hidden=admin;
+admin=location.hash==="#admin";$("sp").hidden=!admin;$("wnote").hidden=admin;$("tst").hidden=!admin;
 buildTabs();drawCard();load();if(!admin)setInterval(load,20000);
 
 (function(){const b=$("bgd");for(let i=0;i<26;i++){const e=document.createElement("i");e.className="sp";const z=2+Math.random()*4;e.style.cssText=`left:${Math.random()*100}vw;width:${z}px;height:${z}px;--dx:${(Math.random()-.5)*160}px;animation-duration:${7+Math.random()*10}s;animation-delay:${-Math.random()*14}s`;b.appendChild(e)}
@@ -345,42 +318,17 @@ $("lg").addEventListener("click",e=>{const b=e.target.closest("button[data-l]");
 let L0="sk";try{L0=localStorage.getItem("lang")||((navigator.language||"").startsWith("cs")?"cz":"sk")}catch(e){}
 if(L0==="cz")setLang("cz");
 
-// ===== zábava =====
-const GOAL=5000,RATE=25,TKY="trk-"+wk;let TR=[];try{TR=JSON.parse(localStorage.getItem(TKY)||"[]")}catch(e){}
-function drawTrk(){const sum=TR.reduce((a,b)=>a+b,0),pct=Math.min(100,sum/GOAL*100);$("tbar").style.width=pct+"%";$("rkt").style.left=Math.max(3,Math.min(97,pct))+"%";
- $("tsum").textContent=sum.toLocaleString("sk-SK")+" Kč · ≈ "+Math.round(sum/RATE)+" €";$("tgoal").textContent="z 5 000 Kč";
- $("tl").innerHTML=TR.map((v,i)=>`<span data-i="${i}">${v} Kč ✕</span>`).join("");$("tdone").hidden=sum<GOAL;return sum}
-const svT=()=>{try{localStorage.setItem(TKY,JSON.stringify(TR))}catch(e){}};
-$("tadd").onclick=()=>{const v=Math.round(+$("tin").value);if(!(v>0))return;const b=drawTrk();TR.push(v);svT();const a=drawTrk();$("tin").value="";if(b<GOAL&&a>=GOAL){confetti();fanfare()}else pop()};
-$("tin").addEventListener("keydown",e=>{if(e.key==="Enter")$("tadd").click()});
-$("tl").addEventListener("click",e=>{const i=e.target.dataset.i;if(i==null)return;TR.splice(+i,1);svT();drawTrk()});
-drawTrk();
-let best=0;try{best=+localStorage.getItem("best")||0}catch(e){}$("gbe").textContent=best;let playing=false;
-$("gst").onclick=()=>{if(playing)return;playing=true;const A=$("garea");A.innerHTML="";let sc=0,tl=20,items=[],sp=0;$("gsc").textContent=0;$("gtm").textContent=20;$("gst").disabled=true;pop();
- const iv=setInterval(()=>{tl--;$("gtm").textContent=tl;if(tl<=0)end()},1000);
- function spawn(){const bad=Math.random()<.2,e=document.createElement(bad?"span":"img");e.className="gi"+(bad?" bad":"");if(bad)e.textContent="💣";else e.src=IM[["mon","mrb","lay"][Math.floor(Math.random()*3)]];
-  e.style.left=Math.random()*(A.clientWidth-50)+"px";e.style.top="-60px";A.appendChild(e);const o={e,y:-60,v:1.8+Math.random()*2.2+(20-tl)*.08};
-  e.onpointerdown=ev=>{ev.preventDefault();if(o.d)return;o.d=1;sc=Math.max(0,sc+(bad?-3:1));$("gsc").textContent=sc;beep(bad?200:880,.08,0,bad?"sawtooth":"square",.05);e.classList.add("pop");setTimeout(()=>e.remove(),300)};items.push(o)}
- function loop(t){if(!playing)return;if(t-sp>Math.max(280,650-(20-tl)*18)){sp=t;spawn()}items.forEach(o=>{if(o.d)return;o.y+=o.v;o.e.style.top=o.y+"px";if(o.y>A.clientHeight){o.d=1;o.e.remove()}});requestAnimationFrame(loop)}
- function end(){clearInterval(iv);playing=false;$("gst").disabled=false;A.innerHTML=`<div class="gmsg">Hra skončila!<br>Skóre: ${sc}${sc>best?"<br>Nový rekord! 🎉":""}</div>`;if(sc>best){best=sc;try{localStorage.setItem("best",best)}catch(e){}$("gbe").textContent=best;confetti();fanfare()}else pop()}
- requestAnimationFrame(loop)};
-const QS=[
- {q:["Čo je poistná suma?","Co je pojistná částka?"],o:[["Horná hranica plnenia poisťovne","Horní hranice plnění pojišťovny"],["Mesačná platba klienta","Měsíční platba klienta"],["Provízia operátora","Provize operátora"]],a:0},
- {q:["Čo je spoluúčasť?","Co je spoluúčast?"],o:[["Časť škody, ktorú hradí klient","Část škody, kterou hradí klient"],["Zľava za vernosť","Sleva za věrnost"],["Poplatok za uzavretie","Poplatek za uzavření"]],a:0},
- {q:["Ktoré poistenie kryje škodu spôsobenú inému?","Které pojištění kryje škodu způsobenou jinému?"],o:[["Poistenie zodpovednosti","Pojištění odpovědnosti"],["Poistenie stavby","Pojištění stavby"],["Cestovné poistenie","Cestovní pojištění"]],a:0},
- {q:["Čo je poistné?","Co je pojistné?"],o:[["Platba klienta za poistenie","Platba klienta za pojištění"],["Odškodné od poisťovne","Odškodné od pojišťovny"],["Cena nehnuteľnosti","Cena nemovitosti"]],a:0},
- {q:["Čo je poistná udalosť?","Co je pojistná událost?"],o:[["Udalosť, na ktorú sa poistenie vzťahuje","Událost, na kterou se pojištění vztahuje"],["Podpis zmluvy","Podpis smlouvy"],["Zmena adresy klienta","Změna adresy klienta"]],a:0},
- {q:["Čo poistenie domácnosti kryje najmä?","Co pojištění domácnosti kryje zejména?"],o:[["Vybavenie bytu – nábytok, spotrebiče","Vybavení bytu – nábytek, spotřebiče"],["Nosné múry domu","Nosné zdi domu"],["Pozemok","Pozemek"]],a:0}];
-let qs=[],qi=0,qsc=0;const Lg=(a)=>lang==="cz"?a[1]:a[0];
-function startQ(){qs=QS.slice().sort(()=>Math.random()-.5).slice(0,3);qi=0;qsc=0;drawQ()}
-function drawQ(){const el=$("qz");if(qi>=qs.length){const m=qsc===3?["🏆 Poistkový expert!","🏆 Pojišťovací expert!"]:qsc===2?["👍 Skoro dokonalé!","👍 Skoro dokonalé!"]:["💪 Ešte potrénuj!","💪 Ještě potrénuj!"];
-  el.innerHTML=`<div class="qq">${Lg(m)} (${qsc}/3)</div><button class="m" id="qr" type="button">${lang==="cz"?"Znovu":"Znova"} ⚡</button>`;$("qr").onclick=startQ;if(qsc===3){confetti();fanfare()}return}
- const q=qs[qi],ord=q.o.map((x,i)=>i).sort(()=>Math.random()-.5);
- el.innerHTML=`<div class="qh">${lang==="cz"?"Otázka":"Otázka"} ${qi+1}/3</div><div class="qq">${esc(Lg(q.q))}</div>`+ord.map(i=>`<button class="qo" type="button" data-i="${i}">${esc(Lg(q.o[i]))}</button>`).join("")}
-$("qz").addEventListener("click",e=>{const b=e.target.closest(".qo");if(!b||b.dataset.d)return;const q=qs[qi],ok=+b.dataset.i===q.a;
- document.querySelectorAll(".qo").forEach(x=>{x.dataset.d=1;if(+x.dataset.i===q.a)x.classList.add("ok")});if(!ok)b.classList.add("no");else{qsc++;pop()}
- setTimeout(()=>{qi++;drawQ()},1100)});
-const _sl2=setLang;setLang=function(l){_sl2(l);if(qi<qs.length)drawQ()};startQ();
+
+// ===== TEST režim (len #admin) =====
+function enterTest(){test=true;real={entries,ws:wheelState,before,td,wk,view};entries=[];wheelState=null;before=false;td=Math.min(4,(new Date().getDay()+6)%7);wk="TEST";view=td;
+ $("tbn").hidden=false;$("tsd").value=td;$("tst").textContent="✖ Koniec testu";$("tst").classList.add("on");$("dy").value=DAYS[td].k;
+ $("rs").innerHTML="<p>Čakáme na zatočenie…</p>";$("hs").innerHTML="";hist.length=0;buildTabs();drawCard();renderTable()}
+function exitTest(){test=false;({before,td,wk,view}=real);entries=real.entries;wheelState=real.ws;real=null;
+ $("tbn").hidden=true;$("tst").textContent="🧪 TEST";$("tst").classList.remove("on");$("dy").value=view>=0?DAYS[view].k:"po";
+ $("rs").innerHTML="<p>Čakáme na zatočenie…</p>";$("hs").innerHTML="";hist.length=0;if(wheelState){lastSpin=wheelState.id;runSpin(wheelState,false)}
+ buildTabs();drawCard();renderTable()}
+$("tst").onclick=()=>test?exitTest():enterTest();
+$("tsd").onchange=()=>{td=+$("tsd").value;view=td;$("dy").value=DAYS[td].k;buildTabs();drawCard()};
 </script>
 </body>
 </html>
