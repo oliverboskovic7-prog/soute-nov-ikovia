@@ -1,4 +1,12 @@
 {
- "entries": [],
+ "entries": [
+  {
+   "op": "cz2",
+   "dy": "po",
+   "nt": "Smlouvy za 5000 kč Hotové",
+   "ts": 1794214828834,
+   "wk": "2026-11-9"
+  }
+ ],
  "wheel": null
 }
