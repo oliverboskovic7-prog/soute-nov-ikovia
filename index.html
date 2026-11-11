@@ -174,7 +174,7 @@ button.g{background:transparent;color:var(--mut);border:1px solid var(--bd);bord
    <g id="disc"></g>
    <circle cx="200" cy="200" r="38" fill="#000" stroke="#95d600" stroke-width="5"/><text x="200" y="213" font-size="38" text-anchor="middle">⚡</text>
    <g id="ptr"><path d="M184 4h32l-16 40z" fill="#fff" stroke="#95d600" stroke-width="4" stroke-linejoin="round"/></g></svg></div>
-  <div class="res"><h3>Streda · Kolo šťastia</h3><p class="req">🎟️ Točíš po uzavretí zmluvy aspoň za 1 000 Kč (≈ 40 €).</p><div id="rs"><p>Čakáme na zatočenie…</p></div><button class="m" id="sp" hidden>Zatočiť ⚡</button><p id="wnote">Kolom točí vedúci – sleduješ naživo 👀</p><div class="hist" id="hs"></div></div>
+  <div class="res"><h3>Streda · Kolo šťastia</h3><p class="req">🎟️ Točíš po uzavretí zmluvy aspoň za 5 000 Kč / 200 €.</p><div id="rs"><p>Čakáme na zatočenie…</p></div><button class="m" id="sp" hidden>Zatočiť ⚡</button><p id="wnote">Kolom točí vedúci – sleduješ naživo 👀</p><div class="hist" id="hs"></div></div>
  </div>
 </section>
 <section class="pane" id="zp">
@@ -196,7 +196,7 @@ const PICK=`<span class="chip">🎁 výber z odmien</span>`;
 const DAYS=[
  {k:"po",i:"💰",d:"Pondelok",h:"Zmluvy za 5 000 Kč",big:'5 000 Kč<small>≈ 200 € · akumulované zmluvy za deň</small>',p:"Sčítavaj hodnoty svojich zmlúv za deň – kto prvý dosiahne 5 000 Kč, vyhráva.",r:PICK},
  {k:"ut",i:"⏱️",d:"Utorok",h:"Najlepšia neproduktivita",big:'1 h 50 min<small>norma neproduktivity za deň</small>',p:"Vyhráva operátor s najlepšou neproduktivitou dňa."},
- {k:"st",i:"🎡",d:"Streda",h:"Kolo šťastia",big:'☕ Káva / ⚡ Monster<small>zmluva aspoň za 1 000 Kč (≈ 40 €) · PVZP – Generali</small>',p:"Uzavri zmluvu aspoň za 1 000 Kč (≈ 40 €) a zatoč kolom – vyhráš kávu alebo Monster.",r:R("mrb","Káva")+R("mon","Monster")+'<button class="go" onclick="tab(\'wh\')">Ísť na kolo 🎡</button>'},
+ {k:"st",i:"🎡",d:"Streda",h:"Kolo šťastia",big:'☕ Káva / ⚡ Monster<small>zmluva aspoň za 5 000 Kč / 200 € · PVZP – Generali</small>',p:"Uzavri zmluvu aspoň za 5 000 Kč / 200 € a zatoč kolom – vyhráš kávu alebo Monster.",r:R("mrb","Káva")+R("mon","Monster")+'<button class="go" onclick="tab(\'wh\')">Ísť na kolo 🎡</button>'},
  {k:"ct",i:"🧠",d:"Štvrtok",h:"3 otázky z testov",big:'3 otázky<small>správne odpovede = odmena</small>',p:"Čím viac správnych odpovedí, tým lepšia odmena.",r:R("mon","2 správne",2)+R("mrb","1 správna",1)+`<span class="chip"><b>3</b> správne = výber</span>`},
  {k:"pi",i:"📞",d:"Piatok",h:"Hodnotenie hovorov",big:'100 %<small>alebo 85 – 95 % hodnotenie</small>',p:"Pozná sa kvalita tvojich hovorov.",r:R("lay","","100 %")+R("mon","")+R("mrb","")+`<span class="chip"><b>85–95 %</b> 1 výber</span>`}];
 // =====================================
@@ -258,7 +258,7 @@ function sync(){drawStrip();drawWon();renderTable();if(!test)$("out").value=JSON
 $("f").addEventListener("submit",ev=>{ev.preventDefault();entries.unshift({id:"n"+Date.now(),op:$("op").value,dy:$("dy").value,nt:$("nt").value.trim(),ts:Date.now(),wk});$("nt").value="";$("st").textContent="✅ Pridané – skopíruj JSON nižšie do data.json na GitHube.";sync();confetti()});
 $("rows").addEventListener("click",ev=>{const x=ev.target.dataset.x;if(!x||!confirm("Zmazať záznam?"))return;entries=entries.filter(e=>e.id!==x);sync()});
 $("cp").onclick=()=>{$("out").select();try{navigator.clipboard.writeText($("out").value)}catch(e){document.execCommand("copy")}$("st").textContent="📋 Skopírované."};
-$("sp").onclick=()=>{if(busy)return;if(!test&&!confirm("Potvrď: operátor má zmluvu aspoň za 1 000 Kč (≈ 40 €)."))return;const w=Math.floor(Math.random()*N),s={w,off:w*A+A*(.15+Math.random()*.7),id:Date.now()};wheelState=s;lastSpin=s.id;runSpin(s,true);sync()};
+$("sp").onclick=()=>{if(busy)return;if(!test&&!confirm("Potvrď: operátor má zmluvu aspoň za 5 000 Kč / 200 €."))return;const w=Math.floor(Math.random()*N),s={w,off:w*A+A*(.15+Math.random()*.7),id:Date.now()};wheelState=s;lastSpin=s.id;runSpin(s,true);sync()};
 async function load(){try{const r=await fetch("data.json?"+Date.now(),{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json();if(test){firstW=false;return}
  entries=(j.entries||[]).map((e,i)=>({id:"e"+i,...e})).sort((a,b)=>b.ts-a.ts);
  if(seen&&!admin)entries.filter(e=>e.wk===wk&&!seen.has(e.id)).forEach(e=>{toast("🎉 "+nm(e.op)+" splnil(a) výzvu – "+((DAYS.find(d=>d.k===e.dy)||{}).d||""));confetti()});
@@ -291,7 +291,7 @@ function hint(){const e=$("hint");e.classList.add("out");setTimeout(()=>{hi=(hi+
 $("hint").textContent=H.sk[hi];setInterval(hint,7000);
 
 // ===== SK / CZ =====
-const CZ=[["zmluva aspoň za 1 000 Kč (≈ 40 €) · PVZP – Generali","smlouva alespoň za 1 000 Kč (≈ 40 €) · PVZP – Generali"],["Uzavri zmluvu aspoň za 1 000 Kč (≈ 40 €) a zatoč kolom – vyhráš kávu alebo Monster.","Uzavři smlouvu alespoň za 1 000 Kč (≈ 40 €) a zatoč kolem – vyhraješ kávu nebo Monster."],["🎟️ Točíš po uzavretí zmluvy aspoň za 1 000 Kč (≈ 40 €).","🎟️ Točíš po uzavření smlouvy alespoň za 1 000 Kč (≈ 40 €)."],["Zmluvy za 5 000 Kč","Smlouvy za 5 000 Kč"],["≈ 200 € · akumulované zmluvy za deň","≈ 200 € · akumulované smlouvy za den"],["Sčítavaj hodnoty svojich zmlúv za deň – kto prvý dosiahne 5 000 Kč, vyhráva.","Sčítej hodnoty svých smluv za den – kdo první dosáhne 5 000 Kč, vyhrává."],
+const CZ=[["zmluva aspoň za 5 000 Kč / 200 € · PVZP – Generali","smlouva alespoň za 5 000 Kč / 200 € · PVZP – Generali"],["Uzavri zmluvu aspoň za 5 000 Kč / 200 € a zatoč kolom – vyhráš kávu alebo Monster.","Uzavři smlouvu alespoň za 5 000 Kč / 200 € a zatoč kolem – vyhraješ kávu nebo Monster."],["🎟️ Točíš po uzavretí zmluvy aspoň za 5 000 Kč / 200 €.","🎟️ Točíš po uzavření smlouvy alespoň za 5 000 Kč / 200 €."],["Zmluvy za 5 000 Kč","Smlouvy za 5 000 Kč"],["≈ 200 € · akumulované zmluvy za deň","≈ 200 € · akumulované smlouvy za den"],["Sčítavaj hodnoty svojich zmlúv za deň – kto prvý dosiahne 5 000 Kč, vyhráva.","Sčítej hodnoty svých smluv za den – kdo první dosáhne 5 000 Kč, vyhrává."],
 ["Môj tracker – 5 000 Kč","Můj tracker – 5 000 Kč"],["Pridaj hodnotu zmluvy v Kč a sleduj, ako sa plní cieľ.","Přidej hodnotu smlouvy v Kč a sleduj, jak se plní cíl."],["Pridať zmluvu","Přidat smlouvu"],["🏆 5 000 Kč splnené! Nahlás to vedúcemu.","🏆 5 000 Kč splněno! Nahlas to vedoucímu."],["Tvoj osobný tracker vidíš len ty (ukladá sa v tvojom prehliadači). Oficiálny zápis robí vedúci.","Svůj osobní tracker vidíš jen ty (ukládá se ve tvém prohlížeči). Oficiální zápis dělá vedoucí."],
 ["Klikaj na plechovky, vyhni sa bombám 💣. Máš 20 sekúnd!","Klikej na plechovky, vyhni se bombám 💣. Máš 20 sekund!"],["Štart ⚡","Start ⚡"],["Tréningové otázky – nie sú otázky zo štvrtkového testu.","Tréninkové otázky – nejsou otázky ze čtvrtečního testu."],
 ["Päť dní, päť výziev. Chráň domov klientov, naber energiu a vyhraj.","Pět dní, pět výzev. Chraň domov klientů, nabij energii a vyhraj."],["Týždeň","Týden"],["nováčikov","nováčků"],["Poistenie","Pojištění"],["POISTENIE","POJIŠTĚNÍ"],["DOMÁCNOSŤ","DOMÁCNOST"],
